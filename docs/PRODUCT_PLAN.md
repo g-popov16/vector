@@ -19,7 +19,7 @@ Daily loop: inspect recovery and sleep → choose training → capture on Watch 
 
 ## Feature coverage and delivery gates
 
-“Source implemented” means code exists, not that the iOS/watchOS build or hardware behavior has been validated. This Mac currently has no Xcode or Apple platform SDKs.
+The shared engine has 13 passing XCTest tests, and both app targets compile in the full unsigned simulator build on GitHub Actions. “Source implemented” does not imply runtime or hardware validation. This Mac currently has no Xcode; CI provides the SDK build.
 
 | Requested feature | Current implementation | Remaining work / acceptance condition |
 |---|---|---|
@@ -57,7 +57,7 @@ Use WatchConnectivity for calibration, planned sessions and live UI mirroring; H
 ## Delivery sequence
 
 1. **Foundation (this repository):** product plan, original native interface, shared tested engine, HealthKit source, local journal/training, local coach, Watch capture source, project generation.
-2. **Device-ready vertical slice:** install Xcode, compile with full SDKs, sign to your Apple account, run on iPhone/Ultra 2, validate real imports and empty/partial permissions, fix lifecycle and layout issues, compare timestamps/totals with Apple Health.
+2. **Device-ready vertical slice:** full SDK build now passing in CI; install local Xcode, sign to your Apple account, run on iPhone/Ultra 2, validate real imports and empty/partial permissions, fix lifecycle and layout issues, compare timestamps/totals with Apple Health.
 3. **Reliable daily analytics:** anchored/background ingestion, chosen source and overnight windows, snapshots, deletion propagation, confidence/coverage, 30/180-day trends, reproducible exports.
 4. **Training and planning:** durable weekly plan, rest/set workflow, muscular model, live strain targets, WatchConnectivity, Action button, workout recovery and auto-detection prototype.
 5. **Sleep and behaviors:** circadian planner, alarm feasibility prototype with reliable fallback, adjusted journal associations, context-aware stress experiments.

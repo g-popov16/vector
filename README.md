@@ -2,7 +2,7 @@
 
 Native iPhone + Apple Watch fitness app foundation for iPhone 17 Pro Max and Ultra 2. SwiftUI, HealthKit, on-device Apple Intelligence, and an independently documented Swift analytics library. No cloud AI or external package dependency in the app.
 
-**Status:** prototype source and tested core; not a finished or device-validated app. This development Mac has Command Line Tools but no Xcode. Full iOS/watchOS compilation and UI/device testing have not run. See the complete [feature plan](docs/PRODUCT_PLAN.md) and [formula specification](docs/SCORING.md).
+**Status:** prototype with 13 passing XCTest tests and a successful full iPhone + embedded Watch simulator build in [GitHub Actions](https://github.com/g-popov16/vector/actions/runs/34115219398). It is not a finished or device-validated app. This development Mac has Command Line Tools but no Xcode; native compilation runs in CI. UI and physical-device testing remain pending. See the complete [feature plan](docs/PRODUCT_PLAN.md) and [formula specification](docs/SCORING.md).
 
 ## Open and run
 
