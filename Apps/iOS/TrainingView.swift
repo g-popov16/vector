@@ -78,6 +78,7 @@ struct TrainingEditor: View {
     private let isEditing: Bool
     private let initialPlanID: UUID?
     @State private var selectedPlanID: UUID?
+    @State private var initializedPlanSelection = false
     init(existing: TrainingLog? = nil, plan: PlannedSession? = nil) {
         logID = existing?.id ?? UUID(); isEditing = existing != nil; initialPlanID = plan?.id
         _selectedPlanID = State(initialValue: plan?.id)
@@ -120,6 +121,8 @@ struct TrainingEditor: View {
                 }.disabled(store.demo) }
             }
             .onAppear {
+                guard !initializedPlanSelection else { return }
+                initializedPlanSelection = true
                 if initialPlanID == nil { selectedPlanID = store.local.plans.first { $0.completedLogID == logID }?.id }
             }
         }

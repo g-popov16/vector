@@ -56,7 +56,7 @@ struct HealthMonitorView: View {
             func line(_ value: String, title: Bool = false) {
                 let attributes: [NSAttributedString.Key: Any] = [.font: title ? UIFont.boldSystemFont(ofSize: 22) : UIFont.systemFont(ofSize: 11), .foregroundColor: UIColor.black]
                 let text = value as NSString
-                let height = text.boundingRect(with: CGSize(width: 499, height: .greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: attributes, context: nil).height + 12
+                let height = text.boundingRect(with: CGSize(width: 499, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: attributes, context: nil).height + 12
                 if y + height > 790 { context.beginPage(); y = 48 }
                 text.draw(in: CGRect(x: 48, y: y, width: 499, height: height), withAttributes: attributes); y += height
             }
