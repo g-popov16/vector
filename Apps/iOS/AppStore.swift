@@ -2,15 +2,6 @@ import Foundation
 import Observation
 import VectorCore
 
-struct LocalState: Codable {
-    var journal: [JournalEntry] = []
-    var training: [TrainingLog] = []
-    var trackedHabits = ["Alcohol", "Late caffeine", "Meditation", "Protein target met", "Morning sunlight", "Late dinner"]
-    var maximumHR: Double = 190
-    var baselineSleep: Double = 8
-    var healthConnected = false
-}
-
 @MainActor @Observable
 final class AppStore {
     var local = LocalState()
@@ -20,6 +11,7 @@ final class AppStore {
     var demo = false
     private let health = HealthService()
     private let file: URL
+    private var canSave = true
     init() {
         let directory = URL.applicationSupportDirectory.appending(path: "Vector", directoryHint: .isDirectory)
         file = directory.appending(path: "local.json")
@@ -27,11 +19,22 @@ final class AppStore {
             try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
             try (directory as NSURL).setResourceValue(true, forKey: .isExcludedFromBackupKey)
             if FileManager.default.fileExists(atPath: file.path) { local = try JSONDecoder().decode(LocalState.self, from: Data(contentsOf: file)) }
-        } catch { message = "Local data could not be loaded: \(error.localizedDescription)" }
+        } catch {
+            canSave = false
+            message = "Local data could not be loaded. The original file is preserved; saving is disabled until it can be read. \(error.localizedDescription)"
+        }
     }
-    func save() {
-        do { try JSONEncoder().encode(local).write(to: file, options: [.atomic, .completeFileProtection]) }
-        catch { message = "Changes could not be saved: \(error.localizedDescription)" }
+    @discardableResult func save() -> Bool {
+        guard canSave else { message = "Saving is disabled because existing local data could not be read. Reopen VECTOR after unlocking your iPhone."; return false }
+        do { try JSONEncoder().encode(local).write(to: file, options: [.atomic, .completeFileProtection]); return true }
+        catch { message = "Changes could not be saved: \(error.localizedDescription)"; return false }
+    }
+    @discardableResult func updateLocal(_ change: (inout LocalState) -> Void) -> Bool {
+        guard !demo else { return false }
+        let original = local
+        change(&local)
+        guard save() else { local = original; return false }
+        return true
     }
     var recovery: RecoveryResult { Analytics.recovery(today: snapshot.today, history: snapshot.history, sleepNeed: sleepNeed) }
     var sleepDebt: Double { SleepAnalytics.debt(recentHours: snapshot.history.sorted { $0.date < $1.date }.compactMap(\.sleepHours), baseline: local.baselineSleep) }
@@ -70,6 +73,9 @@ final class AppStore {
         save()
     }
     func deleteLocalData() {
-        local = LocalState(); snapshot = HealthSnapshot(); demo = false; save()
+        let original = local, wasWritable = canSave
+        local = LocalState(); canSave = true
+        guard save() else { local = original; canSave = wasWritable; return }
+        snapshot = HealthSnapshot(); demo = false
     }
 }

@@ -40,6 +40,17 @@ struct SleepView: View {
                 Text("Sleep efficiency uses the observed sleep window. Missing nights are excluded from debt estimates.").font(.caption).foregroundStyle(V.muted)
             }
         }
+        .onAppear {
+            target = store.local.sleepTarget
+            wake = Calendar.current.nextDate(after: Date(), matching: DateComponents(hour: store.local.wakeHour, minute: store.local.wakeMinute), matchingPolicy: .nextTime) ?? Date()
+        }
+        .onChange(of: target) { _, value in store.updateLocal { $0.sleepTarget = value } }
+        .onChange(of: wake) { _, value in
+            store.updateLocal {
+                $0.wakeHour = Calendar.current.component(.hour, from: value)
+                $0.wakeMinute = Calendar.current.component(.minute, from: value)
+            }
+        }
     }
     private func stageColor(_ stage: SleepStage) -> Color {
         switch stage { case .awake: V.orange; case .core: V.blue; case .deep: Color(red: 0.32, green: 0.42, blue: 0.69); case .rem: V.signal; case .unspecified: V.muted }

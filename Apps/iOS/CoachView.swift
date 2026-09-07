@@ -1,5 +1,6 @@
 import SwiftUI
 import FoundationModels
+import VectorCore
 
 @MainActor @Observable
 final class LocalCoach {
@@ -62,6 +63,7 @@ struct CoachView: View {
     }
     private var context: String {
         let s = store.snapshot
+        let week = Planning.assess(date: Date(), plans: store.demo ? [] : store.local.plans, logs: store.demo ? [] : store.local.training)
         return """
         Data mode: \(store.demo ? "FICTIONAL DEMO; explicitly state this" : "Apple Health import").
         Snapshot date: \(s.updated?.description ?? "No import available").
@@ -72,6 +74,8 @@ struct CoachView: View {
         Latest vitals: \(s.readings.map { "\($0.id): \($0.value.oneDecimal) \($0.unit), sampled \($0.date)" }.joined(separator: "; ")).
         Recent manual sessions: \(store.demo ? "not included in demo" : store.local.training.sorted { $0.date > $1.date }.prefix(7).map { "\($0.activity): \($0.minutes) min at RPE \($0.rpe), \($0.date)" }.joined(separator: "; ")).
         Goal: balanced strength, cardio, sleep, and recovery. No known medical context.
+        This Monday-based week: \(week.plannedCount) planned sessions, \(week.completedPlanCount) linked completions, \(week.completedLoad) logged RPE-minute load. Previous full week: \(week.previousLoad) load. Current week is partial.
+        Scheduled sessions: \(store.demo ? "not included in demo" : store.local.plans.filter { Planning.contains($0.date, in: week.interval) }.sorted { $0.date < $1.date }.prefix(7).map { "\($0.activity), \($0.minutes) minutes, target RPE \($0.targetRPE), \($0.date)" }.joined(separator: "; ")).
         """
     }
 }

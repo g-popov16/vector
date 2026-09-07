@@ -20,6 +20,7 @@
 		A16F481D0B57052115460BFF /* VectorCore in Frameworks */ = {isa = PBXBuildFile; productRef = BD42504935CE05A049F4372E /* VectorCore */; };
 		B2FC36B235C1D8E8F6674241 /* CoachView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C106E96422AC379EFEACA /* CoachView.swift */; };
 		C27E83DD3B527EF8AA0E79FA /* TrainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7208C1E972092F1CCDB1C35 /* TrainingView.swift */; };
+		C29C2CEFEDE6ACF17D7EC79B /* WeeklyPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BDE392859576FDA08B338A /* WeeklyPlanView.swift */; };
 		DDAB2BF9EE9A3E8D5F2C9826 /* VectorCore in Frameworks */ = {isa = PBXBuildFile; productRef = 635B3465F29A26CA25152865 /* VectorCore */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		0BD57104E5D49B0F8E15285E /* VectorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorApp.swift; sourceTree = "<group>"; };
 		2D7D5A3A92C553804716FE1B /* SleepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepView.swift; sourceTree = "<group>"; };
 		37EF1D4C3B6808FBA45E630F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		39BDE392859576FDA08B338A /* WeeklyPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyPlanView.swift; sourceTree = "<group>"; };
 		3F0F42577F61200E7DD80F9E /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		403508494BB0F837EF974049 /* health app */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "health app"; path = .; sourceTree = SOURCE_ROOT; };
 		58CB50D5639F6C53851225B9 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				F7208C1E972092F1CCDB1C35 /* TrainingView.swift */,
 				ED4DFD40BF636F96B0385348 /* Vector.entitlements */,
 				0BD57104E5D49B0F8E15285E /* VectorApp.swift */,
+				39BDE392859576FDA08B338A /* WeeklyPlanView.swift */,
 			);
 			name = iOS;
 			path = Apps/iOS;
@@ -244,6 +247,7 @@
 				92626E44E9C1EF3F25F85E28 /* SleepView.swift in Sources */,
 				C27E83DD3B527EF8AA0E79FA /* TrainingView.swift in Sources */,
 				7D2E23CCCBC96F7952A07C9E /* VectorApp.swift in Sources */,
+				C29C2CEFEDE6ACF17D7EC79B /* WeeklyPlanView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

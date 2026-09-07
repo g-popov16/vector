@@ -5,8 +5,12 @@ import VectorCore
 struct TrainingView: View {
     @Environment(AppStore.self) private var store
     @State private var logging = false
+    @State private var editing: TrainingLog?
     var body: some View {
         Page(title: "Built, not guessed.", subtitle: "02 / Training") {
+            NavigationLink { WeeklyPlanView() } label: {
+                Panel { HStack { VStack(alignment: .leading, spacing: 8) { Eyebrow(text: "Weekly plan"); Text("Give the week direction.").font(.title3.bold()).foregroundStyle(.white) }; Spacer(); Image(systemName: "calendar") } }
+            }
             Panel {
                 Eyebrow(text: "Seven-day workload")
                 Metric(label: "Session RPE × minutes", value: Int(weeklyLoad).formatted(), unit: "AU", color: V.orange)
@@ -29,10 +33,15 @@ struct TrainingView: View {
                     HStack { Text(log.activity).font(.headline); Spacer(); Text("\(Int(log.minutes)) min").foregroundStyle(V.muted) }
                     Text("\(log.date.formatted(date: .abbreviated, time: .shortened)) · RPE \(Int(log.rpe)) · \(Int(log.load)) AU").font(.caption).foregroundStyle(V.muted)
                     ForEach(log.sets) { set in Text("\(set.exercise) · \(set.repetitions) × \(set.kilograms.oneDecimal) kg").font(.subheadline) }
-                    Button("Delete session", role: .destructive) { store.local.training.removeAll { $0.id == log.id }; store.save() }
+                    HStack {
+                        Button("Edit session") { editing = log }
+                        Spacer()
+                        Button("Delete session", role: .destructive) { store.updateLocal { $0.removeTraining(id: log.id) } }
+                    }
                 }
             }
         }.sheet(isPresented: $logging) { TrainingEditor() }
+            .sheet(item: $editing) { TrainingEditor(existing: $0) }
     }
     private var visibleLogs: [TrainingLog] { store.demo ? [] : store.local.training }
     private var weeklyLoad: Double { visibleLogs.filter { $0.date > Date().addingTimeInterval(-7 * 86400) }.reduce(0) { $0 + $1.load } }
@@ -65,6 +74,19 @@ struct TrainingEditor: View {
     @State private var exercise = "Squat"
     @State private var reps = 8
     @State private var weight = 40.0
+    private let logID: UUID
+    private let isEditing: Bool
+    private let initialPlanID: UUID?
+    @State private var selectedPlanID: UUID?
+    init(existing: TrainingLog? = nil, plan: PlannedSession? = nil) {
+        logID = existing?.id ?? UUID(); isEditing = existing != nil; initialPlanID = plan?.id
+        _selectedPlanID = State(initialValue: plan?.id)
+        _activity = State(initialValue: existing?.activity ?? plan?.activity ?? "Strength training")
+        _date = State(initialValue: existing?.date ?? min(plan?.date ?? Date(), Date()))
+        _minutes = State(initialValue: existing?.minutes ?? plan?.minutes ?? 45)
+        _rpe = State(initialValue: existing?.rpe ?? plan?.targetRPE ?? 6)
+        _sets = State(initialValue: existing?.sets ?? [])
+    }
     var body: some View {
         NavigationStack {
             Form {
@@ -73,6 +95,12 @@ struct TrainingEditor: View {
                     DatePicker("When", selection: $date, in: ...Date())
                     Stepper("\(Int(minutes)) minutes", value: $minutes, in: 5...600, step: 5)
                     Stepper("Effort: \(Int(rpe))/10", value: $rpe, in: 1...10)
+                    Picker("Completes planned session", selection: $selectedPlanID) {
+                        Text("Unplanned session").tag(nil as UUID?)
+                        ForEach(store.local.plans.filter { $0.completedLogID == nil || $0.completedLogID == logID }.sorted { $0.date < $1.date }) { plan in
+                            Text("\(plan.activity) · \(plan.date.formatted(date: .abbreviated, time: .shortened))").tag(Optional(plan.id))
+                        }
+                    }
                 }
                 Section("Strength sets · optional") {
                     TextField("Exercise", text: $exercise)
@@ -81,9 +109,18 @@ struct TrainingEditor: View {
                     Button("Add set") { sets.append(.init(exercise: exercise.trimmingCharacters(in: .whitespaces), repetitions: reps, kilograms: weight)) }.disabled(exercise.trimmingCharacters(in: .whitespaces).isEmpty)
                     ForEach(sets) { set in Text("\(set.exercise) · \(set.repetitions) × \(set.kilograms.oneDecimal) kg") }.onDelete { sets.remove(atOffsets: $0) }
                 }
-            }.navigationTitle("Log session").toolbar {
+            }.navigationTitle(isEditing ? "Edit session" : "Log session").toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
-                ToolbarItem(placement: .confirmationAction) { Button("Save") { store.local.training.append(.init(date: date, activity: activity, minutes: minutes, rpe: rpe, sets: sets)); store.save(); dismiss() } }
+                ToolbarItem(placement: .confirmationAction) { Button("Save") {
+                    let log = TrainingLog(id: logID, date: date, activity: activity, minutes: minutes, rpe: rpe, sets: sets)
+                    if store.updateLocal({ state in
+                        for index in state.plans.indices where state.plans[index].completedLogID == logID { state.plans[index].completedLogID = nil }
+                        state.upsert(log, completing: selectedPlanID)
+                    }) { dismiss() }
+                }.disabled(store.demo) }
+            }
+            .onAppear {
+                if initialPlanID == nil { selectedPlanID = store.local.plans.first { $0.completedLogID == logID }?.id }
             }
         }
     }

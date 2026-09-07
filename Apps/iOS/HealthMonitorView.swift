@@ -1,11 +1,15 @@
 import SwiftUI
 import Charts
 import UIKit
+import VectorCore
 
 struct HealthMonitorView: View {
     @Environment(AppStore.self) private var store
     @State private var window = 30
     @State private var report: URL?
+    @State private var metric = "HRV"
+    private var trend: TrendSummary { Trends.summarize(store.snapshot.metricHistory[metric] ?? [], days: window) }
+    private var unit: String { store.snapshot.readings.first { $0.id == metric }?.unit ?? "" }
     var body: some View {
         Page(title: "Know your normal.", subtitle: "Health monitor / latest available") {
             Picker("Trend window", selection: $window) { Text("30 days").tag(30); Text("180 days").tag(180) }.pickerStyle(.segmented)
@@ -17,10 +21,20 @@ struct HealthMonitorView: View {
                 }
             }
             Panel {
-                Eyebrow(text: "Resting heart rate / \(window) days")
-                Chart(store.snapshot.history.filter { $0.date >= Date().addingTimeInterval(-Double(window) * 86400) }) { day in
-                    if let rhr = day.restingHR { LineMark(x: .value("Date", day.date), y: .value("bpm", rhr)).foregroundStyle(V.signal) }
-                }.frame(height: 180)
+                Eyebrow(text: "Vital trends / \(window) days")
+                Picker("Vital", selection: $metric) {
+                    ForEach(["HRV", "Resting HR", "Respiration", "Wrist temperature", "Blood oxygen", "VO₂ max"], id: \.self) { Text($0).tag($0) }
+                }
+                Chart(trend.points) { point in
+                    PointMark(x: .value("Date", point.date), y: .value(unit, point.value)).foregroundStyle(V.signal)
+                }.frame(height: 180).chartYAxis { AxisMarks(position: .leading) }
+                if let change = trend.absoluteChange {
+                    Text("\(change >= 0 ? "+" : "")\(change.oneDecimal) \(unit)").font(.title2.monospacedDigit())
+                    Text("Change in daily average: first 7 versus last 7 days of this window.").font(.caption).foregroundStyle(V.muted)
+                } else {
+                    Text("Not enough readings at both ends of this window to compare.").font(.subheadline).foregroundStyle(V.muted)
+                }
+                Text("\(trend.firstDays)/7 days at the start · \(trend.recentDays)/7 days at the end · at least 3 per end required. Sources are currently combined; changes in source can affect the trend.").font(.caption).foregroundStyle(V.muted)
                 Text("Latest readings are not a continuous live monitor. Wrist temperature is an overnight measurement, not core body temperature.").font(.caption).foregroundStyle(V.muted)
             }
             Button("Create health summary PDF", systemImage: "doc") {

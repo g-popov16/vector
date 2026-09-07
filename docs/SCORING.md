@@ -37,3 +37,9 @@ Session workload = minutes × RPE (1–10), in arbitrary units. Set volume = rep
 ## Journal associations
 
 Match behavior date D to recovery on D+1 in the local calendar. Ignore skipped answers and missing recovery. Require ≥30 matched dates, ≥10 exposed and ≥10 unexposed. Show mean recovery difference. This is an unadjusted association without causal interpretation, confidence intervals, covariate adjustment or multiple-testing correction. Those are required before stronger impact claims.
+
+## Weekly plan and vital changes
+
+Weeks start Monday in the local calendar; boundaries use calendar arithmetic across daylight saving. Planned load uses target RPE × minutes; actual load uses logged RPE × minutes. Completion requires a linked log, never just a checked box. A log completes at most one plan. Duplicate IDs and future actual logs do not contribute. Week-over-week change is unavailable when prior logged load is zero; partial current weeks are labeled. Missing logs cannot distinguish rest from missing activity.
+
+Vital change compares the first seven calendar days with the last seven within the selected 30/180-day window. Samples reduce to one mean per day, then days receive equal weight. Both ends require three observed dates; insufficient coverage yields no change. The current importer combines sources, which is explicitly disclosed.

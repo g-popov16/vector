@@ -1,0 +1,22 @@
+name: Native build
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: native-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    runs-on: macos-26
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Toolchain
+        run: xcodebuild -version
+      - name: Test analytics and persistence
+        run: swift test
+      - name: Build iPhone and embedded Watch apps
+        run: xcodebuild -project Vector.xcodeproj -scheme Vector -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build

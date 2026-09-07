@@ -24,7 +24,7 @@ swift test
 xcodebuild -project Vector.xcodeproj -scheme Vector -sdk iphonesimulator CODE_SIGNING_ALLOWED=NO build
 ```
 
-The standalone runner executes the same eight test bodies as XCTest and parses native Swift source. It is not a replacement for SDK type checking or device tests.
+The standalone runner executes the same 13 test bodies as XCTest and parses native Swift source. It is not a replacement for SDK type checking or device tests.
 
 ## Files
 
@@ -35,3 +35,9 @@ The standalone runner executes the same eight test bodies as XCTest and parses n
 - `docs/PRODUCT_PLAN.md`: every requested capability, status, constraints and implementation order.
 
 Demo values are fictional and isolated from journal writes. Manual training is local; Watch workouts save to Apple Health. HealthKit reads cannot distinguish denied access from missing data. The current import is foreground-based and refreshes on app activation; background ingestion and anchored incremental synchronization are planned.
+
+## Planning and trends
+
+Train → Weekly plan supports dated sessions, target effort, notes, linked completed logs and planned/actual workload comparisons. Existing training logs can be edited; deleting a log clears its plan completion. Sleep target and wake time persist locally. Health Monitor supports 30/180-day charts for all six imported vitals, comparing daily means at the start and end with explicit sample coverage.
+
+Local-state schema v2 migrates earlier files without losing journal or training entries. Unreadable or newer-format files are preserved rather than overwritten. `.github/workflows/build.yml` runs core tests and an unsigned native build on GitHub’s macOS runner.

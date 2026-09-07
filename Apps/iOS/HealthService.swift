@@ -21,6 +21,7 @@ struct HealthSnapshot {
     var history: [VitalDay] = []
     var sleep: [SleepSegment] = []
     var readings: [HealthReading] = []
+    var metricHistory: [String: [MetricPoint]] = [:]
     var workouts: [ImportedWorkout] = []
     var steps: Double?
     var calories: Double?
@@ -35,6 +36,9 @@ struct HealthSnapshot {
             VitalDay(date: calendar.date(byAdding: .day, value: -i, to: day)!, hrv: 62 + sin(Double(i)) * 8, restingHR: 51 + cos(Double(i)) * 3, respiratoryRate: 14.2, sleepHours: 7.8 + sin(Double(i)) * 0.5)
         }
         result.today = .init(date: day, hrv: 71, restingHR: 49, respiratoryRate: 14, sleepHours: 8.1)
+        result.metricHistory["HRV"] = result.history.compactMap { vital in vital.hrv.map { MetricPoint(date: vital.date, value: $0) } }
+        result.metricHistory["Resting HR"] = result.history.compactMap { vital in vital.restingHR.map { MetricPoint(date: vital.date, value: $0) } }
+        result.metricHistory["Respiration"] = result.history.compactMap { vital in vital.respiratoryRate.map { MetricPoint(date: vital.date, value: $0) } }
         let wake = calendar.date(bySettingHour: 7, minute: 0, second: 0, of: day)!
         var cursor = wake.addingTimeInterval(-8.4 * 3600)
         let blocks: [(SleepStage, Double)] = [(.core, 1.2), (.deep, 1.3), (.core, 1.1), (.rem, 0.8), (.awake, 0.3), (.core, 1.2), (.rem, 1.1), (.core, 1.4)]
@@ -92,6 +96,7 @@ final class HealthService {
         var result = HealthSnapshot()
         for (identifier, label, unit) in types {
             let quantities = try await samples(HKQuantityType(identifier), start: beginning, end: now).compactMap { $0 as? HKQuantitySample }
+            result.metricHistory[label] = quantities.map { .init(date: $0.startDate, value: $0.quantity.doubleValue(for: unit) * (identifier == .oxygenSaturation ? 100 : 1)) }
             if let latest = quantities.last {
                 result.readings.append(.init(id: label, value: latest.quantity.doubleValue(for: unit) * (identifier == .oxygenSaturation ? 100 : 1), unit: identifier == .oxygenSaturation ? "%" : unit.unitString, date: latest.endDate, source: latest.sourceRevision.source.name))
             }
