@@ -1,0 +1,61 @@
+name: Vector
+options:
+  bundleIdPrefix: com.vectorfitness
+  deploymentTarget:
+    iOS: "26.0"
+    watchOS: "26.0"
+packages:
+  VectorCore:
+    path: .
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    CODE_SIGN_STYLE: Automatic
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: "0.1.0"
+targets:
+  Vector:
+    type: application
+    platform: iOS
+    sources: [Apps/iOS]
+    dependencies:
+      - package: VectorCore
+      - target: VectorWatch
+        embed: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.vectorfitness.Vector
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_ENTITLEMENTS: Apps/iOS/Vector.entitlements
+    info:
+      path: Apps/iOS/Info.plist
+      properties:
+        CFBundleDisplayName: VECTOR
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        NSHealthShareUsageDescription: VECTOR uses your training, sleep, and vital measurements to calculate personal fitness trends on your iPhone.
+        NSHealthUpdateUsageDescription: VECTOR saves workouts you explicitly record to Apple Health.
+  VectorWatch:
+    type: application
+    platform: watchOS
+    sources: [Apps/Watch]
+    dependencies:
+      - package: VectorCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.vectorfitness.Vector.watchkitapp
+        CODE_SIGN_ENTITLEMENTS: Apps/Watch/VectorWatch.entitlements
+    info:
+      path: Apps/Watch/Info.plist
+      properties:
+        CFBundleDisplayName: VECTOR
+        WKApplication: true
+        WKCompanionAppBundleIdentifier: com.vectorfitness.Vector
+        WKBackgroundModes: [workout-processing]
+        NSHealthShareUsageDescription: VECTOR reads heart rate during workouts to show your zones and observed training strain.
+        NSHealthUpdateUsageDescription: VECTOR saves the workouts you start and finish to Apple Health.
+schemes:
+  Vector:
+    build:
+      targets:
+        Vector: all

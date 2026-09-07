@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		016CE8249A6FC5106FACECB7 /* HealthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44BD27C0F7ECDB77C5EB090 /* HealthService.swift */; };
+		1B755EE0ABB16C8025FD75D6 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77451492B23E356A698B7E1B /* AppStore.swift */; };
+		391F7B66EDF63FBCD040C0E1 /* HealthMonitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FC09F685A4A9A1979F87F3 /* HealthMonitorView.swift */; };
+		543CBC74D27A34EB86C494B9 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F42577F61200E7DD80F9E /* RootView.swift */; };
+		5B4EAD94CC4E09C416A9D2A7 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CB50D5639F6C53851225B9 /* Design.swift */; };
+		66685AC45813B9E8A4459D78 /* VectorWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2E3B3FA7E111829F3BF155 /* VectorWatchApp.swift */; };
+		6FB398F5F301B9D7C2CDD243 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC1E7D9E1C60DE663F2B440 /* JournalView.swift */; };
+		7D2E23CCCBC96F7952A07C9E /* VectorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD57104E5D49B0F8E15285E /* VectorApp.swift */; };
+		898EB72619D1CBD62779D99D /* VectorWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 5DA573969E4E8EE898973755 /* VectorWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		92626E44E9C1EF3F25F85E28 /* SleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7D5A3A92C553804716FE1B /* SleepView.swift */; };
+		A16F481D0B57052115460BFF /* VectorCore in Frameworks */ = {isa = PBXBuildFile; productRef = BD42504935CE05A049F4372E /* VectorCore */; };
+		B2FC36B235C1D8E8F6674241 /* CoachView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C106E96422AC379EFEACA /* CoachView.swift */; };
+		C27E83DD3B527EF8AA0E79FA /* TrainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7208C1E972092F1CCDB1C35 /* TrainingView.swift */; };
+		DDAB2BF9EE9A3E8D5F2C9826 /* VectorCore in Frameworks */ = {isa = PBXBuildFile; productRef = 635B3465F29A26CA25152865 /* VectorCore */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E921B82A004C1E75E1B29300 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 16555960193CAD574D22501C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2A6361908B78731AC3032ED;
+			remoteInfo = VectorWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8509E30215AE64160C8B6D38 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				898EB72619D1CBD62779D99D /* VectorWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0BD57104E5D49B0F8E15285E /* VectorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorApp.swift; sourceTree = "<group>"; };
+		2D7D5A3A92C553804716FE1B /* SleepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepView.swift; sourceTree = "<group>"; };
+		37EF1D4C3B6808FBA45E630F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3F0F42577F61200E7DD80F9E /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		403508494BB0F837EF974049 /* health app */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "health app"; path = .; sourceTree = SOURCE_ROOT; };
+		58CB50D5639F6C53851225B9 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
+		5DA573969E4E8EE898973755 /* VectorWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VectorWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		77451492B23E356A698B7E1B /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
+		889C106E96422AC379EFEACA /* CoachView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachView.swift; sourceTree = "<group>"; };
+		8E2E3B3FA7E111829F3BF155 /* VectorWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorWatchApp.swift; sourceTree = "<group>"; };
+		952FC74DE9AD724F3B44BD99 /* VectorWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VectorWatch.entitlements; sourceTree = "<group>"; };
+		9CC1E7D9E1C60DE663F2B440 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
+		A0BD7C68513E7C3F843A0DC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B3313B58B86D210F5A8D6257 /* Vector.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Vector.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C44BD27C0F7ECDB77C5EB090 /* HealthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthService.swift; sourceTree = "<group>"; };
+		ED4DFD40BF636F96B0385348 /* Vector.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vector.entitlements; sourceTree = "<group>"; };
+		F5FC09F685A4A9A1979F87F3 /* HealthMonitorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthMonitorView.swift; sourceTree = "<group>"; };
+		F7208C1E972092F1CCDB1C35 /* TrainingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2425E989BB38B0125E4D85DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A16F481D0B57052115460BFF /* VectorCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4ECCF424D121512B12850E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDAB2BF9EE9A3E8D5F2C9826 /* VectorCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0F822C16DC82FEB10FD7CB02 = {
+			isa = PBXGroup;
+			children = (
+				B8C9BD99BDA4BA9CF554E85E /* iOS */,
+				15C6565698BF11A83BDF6C86 /* Packages */,
+				2836826B2D80025619E483EE /* Watch */,
+				53E8F54A6FFB3404BFEE2011 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		15C6565698BF11A83BDF6C86 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				403508494BB0F837EF974049 /* health app */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		2836826B2D80025619E483EE /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				A0BD7C68513E7C3F843A0DC2 /* Info.plist */,
+				952FC74DE9AD724F3B44BD99 /* VectorWatch.entitlements */,
+				8E2E3B3FA7E111829F3BF155 /* VectorWatchApp.swift */,
+			);
+			name = Watch;
+			path = Apps/Watch;
+			sourceTree = "<group>";
+		};
+		53E8F54A6FFB3404BFEE2011 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B3313B58B86D210F5A8D6257 /* Vector.app */,
+				5DA573969E4E8EE898973755 /* VectorWatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B8C9BD99BDA4BA9CF554E85E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				77451492B23E356A698B7E1B /* AppStore.swift */,
+				889C106E96422AC379EFEACA /* CoachView.swift */,
+				58CB50D5639F6C53851225B9 /* Design.swift */,
+				F5FC09F685A4A9A1979F87F3 /* HealthMonitorView.swift */,
+				C44BD27C0F7ECDB77C5EB090 /* HealthService.swift */,
+				37EF1D4C3B6808FBA45E630F /* Info.plist */,
+				9CC1E7D9E1C60DE663F2B440 /* JournalView.swift */,
+				3F0F42577F61200E7DD80F9E /* RootView.swift */,
+				2D7D5A3A92C553804716FE1B /* SleepView.swift */,
+				F7208C1E972092F1CCDB1C35 /* TrainingView.swift */,
+				ED4DFD40BF636F96B0385348 /* Vector.entitlements */,
+				0BD57104E5D49B0F8E15285E /* VectorApp.swift */,
+			);
+			name = iOS;
+			path = Apps/iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F2A6361908B78731AC3032ED /* VectorWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A738F73D3DA54703562749B6 /* Build configuration list for PBXNativeTarget "VectorWatch" */;
+			buildPhases = (
+				CD0C044A200464EE829ACCDF /* Sources */,
+				C4ECCF424D121512B12850E2 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VectorWatch;
+			packageProductDependencies = (
+				635B3465F29A26CA25152865 /* VectorCore */,
+			);
+			productName = VectorWatch;
+			productReference = 5DA573969E4E8EE898973755 /* VectorWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F5A0F1F4C70B324BF457CEAE /* Vector */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EF568757DDEC88769588624 /* Build configuration list for PBXNativeTarget "Vector" */;
+			buildPhases = (
+				95B8B89442CFC0A6D4F2A059 /* Sources */,
+				2425E989BB38B0125E4D85DE /* Frameworks */,
+				8509E30215AE64160C8B6D38 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				630D0D478C5B152EA4B975D9 /* PBXTargetDependency */,
+			);
+			name = Vector;
+			packageProductDependencies = (
+				BD42504935CE05A049F4372E /* VectorCore */,
+			);
+			productName = Vector;
+			productReference = B3313B58B86D210F5A8D6257 /* Vector.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		16555960193CAD574D22501C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					F2A6361908B78731AC3032ED = {
+						ProvisioningStyle = Automatic;
+					};
+					F5A0F1F4C70B324BF457CEAE = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 8BD3D650BCE5CB7173C88EC2 /* Build configuration list for PBXProject "Vector" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 0F822C16DC82FEB10FD7CB02;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B53FFD29835503691AE24CCD /* XCLocalSwiftPackageReference "." */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 53E8F54A6FFB3404BFEE2011 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F5A0F1F4C70B324BF457CEAE /* Vector */,
+				F2A6361908B78731AC3032ED /* VectorWatch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		95B8B89442CFC0A6D4F2A059 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B755EE0ABB16C8025FD75D6 /* AppStore.swift in Sources */,
+				B2FC36B235C1D8E8F6674241 /* CoachView.swift in Sources */,
+				5B4EAD94CC4E09C416A9D2A7 /* Design.swift in Sources */,
+				391F7B66EDF63FBCD040C0E1 /* HealthMonitorView.swift in Sources */,
+				016CE8249A6FC5106FACECB7 /* HealthService.swift in Sources */,
+				6FB398F5F301B9D7C2CDD243 /* JournalView.swift in Sources */,
+				543CBC74D27A34EB86C494B9 /* RootView.swift in Sources */,
+				92626E44E9C1EF3F25F85E28 /* SleepView.swift in Sources */,
+				C27E83DD3B527EF8AA0E79FA /* TrainingView.swift in Sources */,
+				7D2E23CCCBC96F7952A07C9E /* VectorApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD0C044A200464EE829ACCDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66685AC45813B9E8A4459D78 /* VectorWatchApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		630D0D478C5B152EA4B975D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F2A6361908B78731AC3032ED /* VectorWatch */;
+			targetProxy = E921B82A004C1E75E1B29300 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		10A08023485B2D94F9BEF2AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Apps/iOS/Vector.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Apps/iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vectorfitness.Vector;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		1A6EF443E4A66AA95E492F29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Apps/iOS/Vector.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Apps/iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vectorfitness.Vector;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		3B6A2D60AEC160AB11DD13EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
+		7CE22F8D29F0562289742E1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		969642924FEB6F8E1A190EB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Apps/Watch/VectorWatch.entitlements;
+				INFOPLIST_FILE = Apps/Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vectorfitness.Vector.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+		A1770D5255055633CEC92D5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Apps/Watch/VectorWatch.entitlements;
+				INFOPLIST_FILE = Apps/Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vectorfitness.Vector.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8BD3D650BCE5CB7173C88EC2 /* Build configuration list for PBXProject "Vector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7CE22F8D29F0562289742E1A /* Debug */,
+				3B6A2D60AEC160AB11DD13EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8EF568757DDEC88769588624 /* Build configuration list for PBXNativeTarget "Vector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10A08023485B2D94F9BEF2AB /* Debug */,
+				1A6EF443E4A66AA95E492F29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A738F73D3DA54703562749B6 /* Build configuration list for PBXNativeTarget "VectorWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				969642924FEB6F8E1A190EB5 /* Debug */,
+				A1770D5255055633CEC92D5A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		B53FFD29835503691AE24CCD /* XCLocalSwiftPackageReference "." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = .;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		635B3465F29A26CA25152865 /* VectorCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = VectorCore;
+		};
+		BD42504935CE05A049F4372E /* VectorCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = VectorCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 16555960193CAD574D22501C /* Project object */;
+}

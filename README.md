@@ -1,0 +1,37 @@
+# VECTOR
+
+Native iPhone + Apple Watch fitness app foundation for iPhone 17 Pro Max and Ultra 2. SwiftUI, HealthKit, on-device Apple Intelligence, and an independently documented Swift analytics library. No cloud AI or external package dependency in the app.
+
+**Status:** prototype source and tested core; not a finished or device-validated app. This development Mac has Command Line Tools but no Xcode. Full iOS/watchOS compilation and UI/device testing have not run. See the complete [feature plan](docs/PRODUCT_PLAN.md) and [formula specification](docs/SCORING.md).
+
+## Open and run
+
+1. Install Xcode with iOS/watchOS SDKs compatible with your devices. Open it once and install the requested components.
+2. Select it: `sudo xcode-select -s /Applications/Xcode.app/Contents/Developer`.
+3. Open `Vector.xcodeproj`. Select your signing team for both app targets and change bundle IDs if needed. Keep the Watch companion ID aligned.
+4. Select the **Vector** scheme and your iPhone. Build/run; install the companion on the paired Watch.
+5. Connect Apple Health, review permissions, and calibrate maximum HR. Alternatively choose **Explore with demo data**.
+
+The project can be regenerated with `xcodegen generate` from `project.yml`; XcodeGen was installed during setup. Local package sources remain independent of generated project files.
+
+## Verify
+
+```sh
+swift build
+sh scripts/verify-core.sh
+# With full Xcode installed:
+swift test
+xcodebuild -project Vector.xcodeproj -scheme Vector -sdk iphonesimulator CODE_SIGNING_ALLOWED=NO build
+```
+
+The standalone runner executes the same eight test bodies as XCTest and parses native Swift source. It is not a replacement for SDK type checking or device tests.
+
+## Files
+
+- `Sources/VectorCore`: recovery, strain/zones, sleep, journal associations and catalogs.
+- `Tests/VectorCoreTests`: deterministic edge-case tests.
+- `Apps/iOS`: native screens, protected local storage, HealthKit, Foundation Models coach and paginated PDF export.
+- `Apps/Watch`: native live workout capture via `HKWorkoutSession` / `HKLiveWorkoutBuilder`.
+- `docs/PRODUCT_PLAN.md`: every requested capability, status, constraints and implementation order.
+
+Demo values are fictional and isolated from journal writes. Manual training is local; Watch workouts save to Apple Health. HealthKit reads cannot distinguish denied access from missing data. The current import is foreground-based and refreshes on app activation; background ingestion and anchored incremental synchronization are planned.
